@@ -49,7 +49,7 @@ app.listen(port, function () {
 app.get("/", function (req, res) {
     articles.find({}, null, { sort: { created: -1 } }, function (err, data) {
         if (data.length === 0) {
-            res.render("placeholder", { message: "There are no articles scraped yet. Click \"Scrape For The Newest Articles\" for the best news." });
+            res.render("placeholder", { message: "Welcome!" });
         }
         else {
             res.render("index", { articles: data });

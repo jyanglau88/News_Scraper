@@ -5,10 +5,10 @@
         <form action="/save/{{this._id}}" method="POST">
             <button type="submit" class="status" value="{{this.status}}">{{this.status}}</button>
             {{#unless this.note}}
-            <button type="button" class="addnote-button" value="{{this._id}}">Add A Note</button>
+            <button type="button" class="addnote-button" value="{{this._id}}">Add A Comment</button>
             {{/unless}}
             {{#if this.note}}
-            <button type="button" class="addnote-button" value="{{this._id}}">Edit Note</button>
+            <button type="button" class="addnote-button" value="{{this._id}}">Edit Comment</button>
             {{/if}}
         </form>
     </h2>
