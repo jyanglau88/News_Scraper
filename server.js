@@ -32,7 +32,8 @@ var port = process.env.PORT || 3000;
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
-app.use(express.static("/public"));
+
+app.use(express.static(__dirname + '/public'));
 
 // Parse request body as JSON
 app.use(body.urlencoded({ extended: false }));
@@ -60,13 +61,10 @@ app.get("/", function (req, res) {
 // A GET route for scraping the New York Times website
 app.get("/scrape", function (req, res) {
     
-//
+//axios
         axios.get("https://www.nytimes.com/section/world").then(function(response) {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
             var $ = cheerio.load(response.data);
-
-    //request("https://www.nytimes.com/section/world", function (error, response, html) {
-  //      var $ = cheerio.load(html);
 
         var result = {};
         $("div.story-body").each(function (i, element) {
