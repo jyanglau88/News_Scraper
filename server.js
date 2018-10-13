@@ -146,7 +146,7 @@ app.post("/comments/:id", function (req, res) {
     var comments = new comments(req.body);
     comments.save(function (err, doc) {
         if (err) throw err;
-        articles.findByIdAndUpdate(req.params.id, { $set: { "comments": doc._id } }, { new: true }, function (err, newdoc) {
+        comments.findByIdAndUpdate(req.params.id, { $set: { "comments": doc._id } }, { new: true }, function (err, newdoc) {
             if (err) throw err;
             else {
                 res.send(newdoc);
@@ -157,7 +157,7 @@ app.post("/comments/:id", function (req, res) {
 
 app.get("/comments/:id", function (req, res) {
     var id = req.params.id;
-    articles.findById(id).populate("comments").exec(function (err, data) {
+    comments.findById(id).populate("comments").exec(function (err, data) {
         res.send(data.comments);
     })
 })
