@@ -32,7 +32,7 @@ var port = process.env.PORT || 3000;
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
-app.use(express.static("public"));
+app.use(express.static("/public"));
 
 // Parse request body as JSON
 app.use(body.urlencoded({ extended: false }));
