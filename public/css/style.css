@@ -1,0 +1,237 @@
+* {
+	box-sizing: border-box;
+	line-height: 200%;
+}
+
+body {
+	background-color: slategray;
+}
+
+button {
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+	color: cornsilk;
+}
+
+header form {
+	display: inline;
+}
+
+header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 100%;
+	height: 70px;
+	box-shadow: 0 0 10px gray;
+	background-color: seashell;
+	opacity: 0.9;
+}
+
+header button {
+	float: left;
+	font-size: 20px;
+	color: cornsilk;
+	height: 100%;
+	min-width: 150px;
+	padding: 0 15px;
+}
+
+#all-articles {
+	background-color: burlywood;
+}
+
+#saved-articles {
+	background-color: gray;
+}
+
+#refresh-articles {
+	background-color: silver;
+}
+
+#all-articles:hover, #saved-articles:hover, #refresh-articles:hover {
+	background-color: goldenrod;
+	opacity: 0.9;
+}
+
+#search-input {
+	float: right;
+	padding: 5px;
+	font-size: 15px;
+	min-width: 200px;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+#search-submit {
+	float: right;
+	height: 80%;
+	margin-top: 10px;
+	height: 63%;
+	margin-right: 10px;
+}
+
+#sitename {
+	float: left;
+	padding: 15px 11px;
+	height: 100%;
+	background-color: skyblue;
+	font-size: 23px;
+	font-weight: bold;
+	color: cornsilk;
+	opacity: 0.7;
+}
+
+#cover {
+	width: 100%;
+}
+
+.story-body {
+	margin: auto;
+	width: 95%;
+	min-height: 200px;
+	box-shadow: 0 0 10px gray;
+	background-color: cornsilk;
+}
+
+.story-body h2 {
+	background-color: teal;
+}
+
+.story-body a {
+	float: left;
+	display: block;
+	width: 77%;
+	color: cornsilk;
+	padding-left: 10px;
+}
+
+.story-body button {
+	display: inline;
+	min-width: 128px;
+	background-color: thistle;
+	color: cornsilk;
+	font-weight: bold;
+	font-size: 22px;
+}
+
+.story-body button:hover {
+	background-color: cyan;
+	box-shadow: 0 0 10px cornsilk;
+}
+
+.story-body summary {
+	float: left;
+	width: 80%;
+	padding: 0px 20px;
+}
+
+.story-body img {
+	display: inline-block;
+	width: 200px;
+}
+
+.message {
+	width: 100%;
+	border-radius: 5px;
+	box-shadow: 0 0 10px gray;
+	margin: auto;
+	text-align: center;
+	padding: 40px 90px;
+	color: gray;
+	background-color: cornsilk;
+}
+
+#addnote {
+	display: none;
+	justify-content: center;
+	align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 4;
+}
+
+#note {
+	padding: 0 20px 20px 20px;
+}
+
+#note-displayer {
+	width: 700px;
+	background-color: cornsilk;
+	z-index: 5;
+}
+
+#note-displayer h2 {
+	background-color: palegreen;
+	color: cornsilk;
+	padding: 0 20px;
+	margin: 0;
+}
+
+#note-displayer h3 {
+	padding: 0 20px;
+	margin: 0;
+	background-color: plum;
+	color: palegoldenrod;
+}
+
+#note-displayer label {
+	color: gray;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#note-displayer button {
+	min-width: 128px;
+	background-color: pink;
+	color: cornsilk;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 0 10px;
+	border-radius: 5px
+}
+
+#note-displayer button:hover {
+	background-color: tan;
+	box-shadow: 0 0 10px cornsilk;
+}
+
+#note-title {
+	width: 100%;
+	margin: 0 0 10px 0;
+	padding: 5px;
+	font-size: 15px;
+}
+
+#note-body {
+	width: 100%;
+	padding: 5px;
+	font-size: 15px;
+}
+
+#container {
+	margin-bottom: 200px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+	background-color: gray;
+	color: #ddd;
+	font-size: 15px;
+	border-top: 8px solid springgreen;
+	opacity: 0.7;
+	z-index: 3;
+}
