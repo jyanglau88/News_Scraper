@@ -57,9 +57,17 @@ app.get("/", function (req, res) {
     });
 });
 
+// A GET route for scraping the New York Times website
 app.get("/scrape", function (req, res) {
-    request("https://www.nytimes.com/section/world", function (error, response, html) {
-        var $ = cheerio.load(html);
+    
+//
+        axios.get("https://www.nytimes.com/section/world").then(function(response) {
+            // Then, we load that into cheerio and save it to $ for a shorthand selector
+            var $ = cheerio.load(response.data);
+
+    //request("https://www.nytimes.com/section/world", function (error, response, html) {
+  //      var $ = cheerio.load(html);
+
         var result = {};
         $("div.story-body").each(function (i, element) {
             var link = $(element).find("a").attr("href");
@@ -86,7 +94,7 @@ app.get("/scrape", function (req, res) {
                 }
             });
         });
-        console.log("Scrape complete.");
+        console.log("Articles Scraped.");
         res.redirect("/");
     });
 });
