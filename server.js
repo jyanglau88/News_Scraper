@@ -1,39 +1,40 @@
 var express = require("express");
+var logger = require("morgan");
+var mongoose = require("mongoose");
+
+// Our scraping tools
+// Axios is a promised-based http library, similar to jQuery's Ajax method
+// It works on the client and on the server
+var axios = require("axios");
+var cheerio = require("cheerio");
+
+
 var method = require("method-override");
 var body = require("body-parser");
 var exphbs = require("express-handlebars");
-var mongoose = require("mongoose");
-var logger = require("morgan");
-var cheerio = require("cheerio");
 var request = require("request");
 
 var comments = require("./models/comments");
 var articles = require("./models/articles");
-var databaseUrl = 'mongodb://localhost/nyt';
 
-if (process.env.MONGODB_URI) {
-    mongoose.connect(process.env.MONGODB_URI);
-}
-else {
-    mongoose.connect(databaseUrl);
-};
+//mongo
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.Promise = Promise;
-var db = mongoose.connection;
+mongoose.connect(MONGODB_URI);
 
-db.on("error", function (error) {
-    console.log("Mongoose Error: ", error);
-});
 
-db.once("open", function () {
-    console.log("Mongoose connection successful.");
-});
+// Require all models
+var db = require("./models");
 
+// Initialize Express
 var app = express();
 var port = process.env.PORT || 3000;
 
+// Use morgan logger for logging requests
 app.use(logger("dev"));
 app.use(express.static("public"));
+
+// Parse request body as JSON
 app.use(body.urlencoded({ extended: false }));
 app.use(method("_method"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -48,7 +49,7 @@ app.listen(port, function () {
 app.get("/", function (req, res) {
     articles.find({}, null, { sort: { created: -1 } }, function (err, data) {
         if (data.length === 0) {
-            res.render("placeholder", { message: "There's nothing scraped yet. Please click \"Scrape For Newest Articles\" for fresh and delicious news." });
+            res.render("placeholder", { message: "There are no articles scraped yet. Click \"Scrape For The Newest Articles\" for the best news." });
         }
         else {
             res.render("index", { articles: data });
@@ -85,7 +86,7 @@ app.get("/scrape", function (req, res) {
                 }
             });
         });
-        console.log("Scrape finished.");
+        console.log("Scrape complete.");
         res.redirect("/");
     });
 });
@@ -93,7 +94,7 @@ app.get("/scrape", function (req, res) {
 app.get("/saved", function (req, res) {
     articles.find({ issaved: true }, null, { sort: { created: -1 } }, function (err, data) {
         if (data.length === 0) {
-            res.render("placeholder", { message: "You have not saved any articles yet. Try to save some delicious news by simply clicking \"Save Article\"!" });
+            res.render("placeholder", { message: "There are no saved articles yet. To save just click \"Save Article\"!" });
         }
         else {
             res.render("saved", { saved: data });
@@ -112,7 +113,7 @@ app.post("/search", function (req, res) {
     articles.find({ $text: { $search: req.body.search, $caseSensitive: false } }, null, { sort: { created: -1 } }, function (err, data) {
         console.log(data);
         if (data.length === 0) {
-            res.render("placeholder", { message: "Nothing has been found. Please try other keywords." });
+            res.render("placeholder", { message: "Nothing found. Please try again." });
         }
         else {
             res.render("search", { search: data })
