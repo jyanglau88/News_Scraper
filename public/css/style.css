@@ -5,6 +5,8 @@
 
 body {
 	background-color: slategray;
+	background-image: url("../images/Newspaper.jpg");
+	margin-top: 85px;
 }
 
 button {
@@ -12,7 +14,6 @@ button {
 }
 
 a {
-	text-decoration: none;
 	color: cornsilk;
 }
 
@@ -29,7 +30,6 @@ header {
 	height: 70px;
 	box-shadow: 0 0 10px gray;
 	background-color: seashell;
-	opacity: 0.9;
 }
 
 header button {
